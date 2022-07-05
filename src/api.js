@@ -17,7 +17,6 @@ import NProgress from 'nprogress';
     const getToken = async (code) => {
       try {
           const encodeCode = encodeURIComponent(code);
-  // eslint-disable-next-line
           const response = await fetch( "https://a9yz3ebhd9.execute-api.eu-central-1.amazonaws.com/dev/api/token" + "/" + encodeCode);
           if (!response.ok) {
               throw new Error(`HTTP error! status: ${response.status}`)
@@ -67,7 +66,6 @@ import NProgress from 'nprogress';
 
   if (token) {
     removeQuery();
-    // eslint-disable-next-line
     const url = "https://a9yz3ebhd9.execute-api.eu-central-1.amazonaws.com/dev/api/get-events" + "/" + token;
     const result = await axios.get(url);
     if (result.data) {
@@ -83,10 +81,6 @@ import NProgress from 'nprogress';
   export const getAccessToken = async () => {
     const accessToken = localStorage.getItem('access_token'); 
     const tokenCheck = accessToken && (await checkToken(accessToken));
-
-  
-
-
     if (!accessToken || tokenCheck.error) {
       await localStorage.removeItem("access_token");
       const searchParams = new URLSearchParams(window.location.search);
