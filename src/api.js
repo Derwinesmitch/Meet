@@ -67,7 +67,7 @@ import NProgress from 'nprogress';
 
   if (token) {
     removeQuery();
-    const url = 'YOUR_GET_EVENTS_API_ENDPOINT' + '/' + token;
+    const url = 'https://a9yz3ebhd9.execute-api.eu-central-1.amazonaws.com/dev/api/get-events' + '/' + token;
     const result = await axios.get(url);
     if (result.data) {
       var locations = extractLocations(result.data.events);
