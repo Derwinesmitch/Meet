@@ -94,7 +94,7 @@ import NProgress from 'nprogress';
         const results = await axios.get(
           "https://a9yz3ebhd9.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url"
         );
-        const { authURL } = results.data;
+        const { authUrl } = results.data;
         return (window.location.href = authUrl);
       }
       return code && getToken(code);
