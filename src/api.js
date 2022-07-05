@@ -83,7 +83,7 @@ import NProgress from 'nprogress';
     const accessToken = localStorage.getItem('access_token'); 
     const tokenCheck = accessToken && (await checkToken(accessToken));
 
-  }
+  
 
 
     if (!accessToken || tokenCheck.error) {
@@ -100,6 +100,7 @@ import NProgress from 'nprogress';
       return code && getToken(code);
     }
     return accessToken;
+  };
 
 
-
+  
