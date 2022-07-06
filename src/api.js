@@ -93,7 +93,7 @@ import NProgress from 'nprogress';
     try {
         const encodeCode = encodeURIComponent(code);
 
-        const response = await fetch( 'https://a9yz3ebhd9.execute-api.eu-central-1.amazonaws.com/dev/api/token/{code}' + '/' + encodeCode);
+        const response = await fetch(`https://a9yz3ebhd9.execute-api.eu-central-1.amazonaws.com/dev/api/token/${code}` + '/' + encodeCode);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`)
         }
