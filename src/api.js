@@ -11,19 +11,7 @@ import NProgress from 'nprogress';
 
 
 
-  const removeQuery = () => {
-    if (window.history.pushState && window.location.pathname) {
-      var newurl =
-        window.location.protocol +
-        "//" +
-        window.location.host +
-        window.location.pathname;
-      window.history.pushState("", "", newurl);
-    } else {
-      newurl = window.location.protocol + "//" + window.location.host;
-      window.history.pushState("", "", newurl);
-    }
-  };
+
 
 
   const checkToken = async (accessToken) => {
@@ -98,4 +86,18 @@ const getToken = async (code) => {
     access_token && localStorage.setItem("access_token", access_token);
   
     return access_token;
+  };
+  
+  const removeQuery = () => {
+    if (window.history.pushState && window.location.pathname) {
+      var newurl =
+        window.location.protocol +
+        "//" +
+        window.location.host +
+        window.location.pathname;
+      window.history.pushState("", "", newurl);
+    } else {
+      newurl = window.location.protocol + "//" + window.location.host;
+      window.history.pushState("", "", newurl);
+    }
   };
