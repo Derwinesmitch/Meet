@@ -9,17 +9,11 @@ import NProgress from 'nprogress';
   };
   
 
-
-
-
-
-
   const checkToken = async (accessToken) => {
     const result = await fetch(
       `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
     )
       .then((res) => res.json())
-      .then((res) => console.log(res)) 
       .catch((error) => error.json());
   
     return result;
