@@ -51,14 +51,27 @@ import NProgress from 'nprogress';
     }
   };
 
-  
+    const getToken = async (code) => {
+    try {
+        const encodeCode = encodeURIComponent(code);
+
+        const response = await fetch(`https://a9yz3ebhd9.execute-api.eu-central-1.amazonaws.com/dev/api/token` + '/' + encodeCode);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        const { access_token } = await response.json();
+        access_token && localStorage.setItem("access_token", access_token);
+        return access_token;
+    } catch(error) {
+        error.json();
+    }
+}
 
 
   export const getAccessToken = async () => {
     const accessToken = localStorage.getItem('access_token');
     const tokenCheck = accessToken && (await checkToken(accessToken));
-// || tokenCheck.error)
-    if (!accessToken  ){
+    if (!accessToken || tokenCheck.error) {
       await localStorage.removeItem("access_token");
       const searchParams = new URLSearchParams(window.location.search);
       const code = await searchParams.get("code");
@@ -90,20 +103,6 @@ import NProgress from 'nprogress';
     }
   };
   
-  const getToken = async (code) => {
-    try {
-        const encodeCode = encodeURIComponent(code);
 
-        const response = await fetch(`https://a9yz3ebhd9.execute-api.eu-central-1.amazonaws.com/dev/api/token` + '/' + encodeCode);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`)
-        }
-        const { access_token } = await response.json();
-        access_token && localStorage.setItem("access_token", access_token);
-        return access_token;
-    } catch(error) {
-        error.json();
-    }
-}
 
    
