@@ -14,6 +14,7 @@ const credentials = {
   redirect_uris: ["https://derwinesmitch.github.io/Meet/"],
   javascript_origins: ["https://derwinesmitch.github.io", "http://localhost:3000"],
 };
+
 const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
 const oAuth2Client = new google.auth.OAuth2(
   client_id,
@@ -81,7 +82,7 @@ module.exports.getAccessToken = async (event) => {
       });
   };
 
-  module.exports.getCalendarEvents = event => {
+  module.exports.getCalendarEvents = async(event) => {
 
     const oAuth2Client = new google.auth.OAuth2(
       client_id,
@@ -91,7 +92,8 @@ module.exports.getAccessToken = async (event) => {
     // Decode authorization code extracted from the URL query
     const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
     oAuth2Client.setCredentials({ access_token });
-      return new Promise( (resolve, reject) => {
+      
+    return new Promise( (resolve, reject) => {
 
         calendar.events.list(
           {
