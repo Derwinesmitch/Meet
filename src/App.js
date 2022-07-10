@@ -10,14 +10,7 @@ class App extends Component {
     locations: []
   };
   
-  componentDidMount() {
-    this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
-      }
-    });
-  }
+
 
   updateEvents = (location) => {
     getEvents().then((events) => {
@@ -30,6 +23,11 @@ class App extends Component {
     });
   }
 
+  componentDidMount() {
+    getEvents().then((events) => {
+      this.setState({ events, locations: extractLocations(events) });
+    });
+  }
 
   componentWillUnmount(){
     this.mounted = false;
