@@ -21,7 +21,7 @@ class NumberOfEvents extends Component {
       });
     }
 
-        this.props.setNumberOfEvents(undefined, inputValue);
+        this.props.updateEvents(undefined, inputValue);
     }
 
   render() {
