@@ -46,6 +46,12 @@ export const getAccessToken = async () => {
       return mockData;
     }
   
+    if (result.data) {
+      var locations = extractLocations(result.data.events);
+      localStorage.setItem('lastEvents', JSON.stringify(result.data));
+      localStorage.setItem('locations', JSON.stringify(locations));
+    }
+    
     if (!navigator.onLine) {
       const data = localStorage.getItem("lastEvents");
       NProgress.done();
