@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+} from 'recharts';
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
@@ -6,7 +9,7 @@ import WelcomeScreen from './WelcomeScreen';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import './nprogress.css';
 import NumberOfEvents from './NumberOfEvents';
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
 class App extends Component {
   state = {
     events: [],
@@ -77,8 +80,7 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div
-className="App" />
+    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div className="App">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
@@ -87,8 +89,7 @@ className="App" />
           <ScatterChart
             margin={{
               top: 20, right: 20, bottom: 20, left: 20,
-            }}
-          >
+            }} >
             <CartesianGrid />
             <XAxis type="category" dataKey="city" name="city" />
             <YAxis allowDecimals={false} type="number" dataKey="number" name="number of events" />
@@ -97,8 +98,7 @@ className="App" />
           </ScatterChart>
         </ResponsiveContainer>
         <EventList  events={this.state.events} />
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
-getAccessToken={() => { getAccessToken() }} />
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }

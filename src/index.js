@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import * as atatus from 'atatus-spa';
+// import * as atatus from 'atatus-spa';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
-atatus.config('11238dd90c4d4e11b0b2442187f6ac6b').install();
+// atatus.config('11238dd90c4d4e11b0b2442187f6ac6b').install();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
