@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import {
-  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+  ScatterChart,
+  Scatter, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  ResponsiveContainer,
 } from 'recharts';
+
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
