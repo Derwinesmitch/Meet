@@ -3,12 +3,10 @@ import { ErrorAlert } from './alert';
 
 class NumberOfEvents extends Component {
   state = {
-    // eventNumbers: 32,
     infoText: '',
   }
 
   handleInputChanged = (event) => {
-    // let inputValue = event.target.value;
     const inputValue = parseInt(event.target.value);
     if (inputValue > 0 || inputValue < 33) {
       this.setState({
@@ -31,7 +29,7 @@ class NumberOfEvents extends Component {
       
       
       <label>
-            <input className="eventNumbersList" type="number" value={eventNumbers} onChange={this.handleInputChanged}> 
+            <input className="eventNumbersList" type="number" min="1" max="32" value={eventNumbers} onChange={this.handleInputChanged}> 
             </input>
           </label>
           <ErrorAlert text={this.state.infoText} />
