@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #40d3b6;
+}
+
 ul {
   padding: 0;
   list-style: none;
@@ -15,6 +19,23 @@ ul {
 
 p {
   margin: 5px 0;
+}
+
+label {
+  margin: 5px 0;
+  color: #178b25;
+}
+
+h1,
+h3 {
+  margin: 5px 0;
+  color: #d9d82a;
+}
+
+h2,
+h4{
+  margin: 5px 0;
+  color: #2a54d9;
 }
 
 .display-none {
