@@ -36,7 +36,7 @@ class App extends Component {
     if ((code || isTokenValid) && this.mounted) {
         getEvents().then((events) => {
           if (this.mounted) {
-            this.setState({ events: events, locations: extractLocations(events) });
+            this.setState({ events: events.slice(0, this.state.numberOfEvents), locations: extractLocations(events) });
           }
         });
       }
@@ -45,53 +45,58 @@ class App extends Component {
   componentWillUnmount(){
     this.mounted = false;
   }
-
-
-  updateEvents = (location, eventCount) => {
-    if (eventCount === undefined) {
-       eventCount = this.state.numberOfEvents;
-    }
-    if (location === undefined) {
-      location = this.state.locationSelected;
-    }
-    
-    getEvents().then((events) => {
-      const locationEvents = (location === 'all') ?
-        events :
-        events.filter((event) => event.location === location);
-      this.setState({
-        events: locationEvents,
-        numberOfEvents: eventCount,
-        locationSelected: location,
-      });
-    });
-  }
-
-
-  setNumberOfEvents = (numberOfEvents) => {
-    this.setState({
-      numberOfEvents,
-    });
-    this.updateEvents(undefined, numberOfEvents);
-  };
-
-
+  
   getData = () => {
     const {locations, events} = this.state;
     const data = locations.map((location)=>{
       const number = events.filter((event) => event.location === location).length
-      const city = location.split(', ').shift()
+      const city = location.split(',').shift()
       return {city, number};
     })
     return data;
   };
 
+
+  updateEvents = (location, eventCount) => {
+    if (eventCount === undefined) {
+       eventCount = this.state.numberOfEvents;
+    } else (
+      this.setState({ numberOfEvents: eventCount})
+    )
+    if (location === undefined) {
+      location = this.state.locationSelected;
+    }
+    getEvents().then((events) => {
+      const locationEvents = (location === 'all') 
+      ? events 
+      : events.filter((event) => event.location === location);
+     if (this.mounted) {
+        this.setState({
+        events: locationEvents.slice(0, eventCount),
+        numberOfEvents: eventCount,
+        locationSelected: location,
+      });
+     }
+    });
+  }
+
+
+  // setNumberOfEvents = (numberOfEvents) => {
+  //   this.setState({
+  //     numberOfEvents,
+  //   });
+  //   this.updateEvents(undefined, numberOfEvents);
+  // };
+
+
+
   render() {
+   const { events } = this.state;
     if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div className="App">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} setNumberOfEvents = { this.setNumberOfEvents} />s
+        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents = { this.updateEvents} />s
         <ResponsiveContainer height={400} >
           <ScatterChart
             margin={{
@@ -104,7 +109,7 @@ class App extends Component {
             <Scatter data={this.getData()} fill="#8884d8" />
           </ScatterChart>
         </ResponsiveContainer>
-        <EventList  events={this.state.events} />
+        <EventList  events={this.state.events} updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </div>
     );
