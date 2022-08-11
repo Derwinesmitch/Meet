@@ -8,7 +8,7 @@ class NumberOfEvents extends Component {
 
   handleInputChanged = (event) => {
     const inputValue = parseInt(event.target.value);
-    if (inputValue > 0 || inputValue < 33) {
+    if (inputValue <= 32 && inputValue > 0) {
       this.setState({
         eventNumbers: inputValue,
         infoText: '',
@@ -17,11 +17,11 @@ class NumberOfEvents extends Component {
       this.setState({
         eventNumbers: 32,
         infoText: 'enter valid number between 1 and 32',
-      });
+      })
     }
     
     this.props.updateEvents(undefined, inputValue);
-    }
+    };
 
   render() {
     const { eventNumbers } = this.props;
