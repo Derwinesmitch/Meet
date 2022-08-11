@@ -19,6 +19,8 @@ const getData = () => {
     return data;
 };
 
+const colors = ["#3b884f", "#9233bf", "#6381df", "#d35940", "#40d3b6"];
+
     return (
         <ResponsiveContainer height={400}>
             <PieChart width={100} height={100}>
