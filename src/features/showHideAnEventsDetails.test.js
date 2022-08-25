@@ -12,7 +12,7 @@ defineFeature(feature, (test) => {
     test('An event element is collapsed by default', ({ given, when, then }) => {
         given('Given user opens the app', () => {
 
-            AppWrapped = mount(<App />);
+            AppWrapper = mount(<App />);
         });
 
         when('an event is displayed', () => {
@@ -27,7 +27,7 @@ defineFeature(feature, (test) => {
     test('User can expand an event to see its details', ({ given, when, then }) => {
         given('the user searched for an event', () => {
 
-            AppWrapped = mount(<App />);
+            AppWrapper = mount(<App />);
         });
 
         when('the user clicks on show details button', () => {
